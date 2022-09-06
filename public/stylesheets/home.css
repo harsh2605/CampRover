@@ -38,6 +38,7 @@ body {
 }
 .btn:hover{
     background-color: black;
-    color:red;
+    color:rgb(0, 17, 255);
+    font-size: 21px;
     
 }

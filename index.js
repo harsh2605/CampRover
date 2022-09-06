@@ -1,6 +1,6 @@
-if (process.env.NODE_ENV !== "production") {
-    require('dotenv').config();
-}
+require('dotenv').config();
+
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -9,6 +9,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
+const mongoSanitize = require('express-mongo-sanitize');
+// const helmet = require('helmet');
 
 
 const userRoutes = require('./Routes/users');
@@ -36,6 +38,9 @@ const User = require('./models/user');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mongoSanitize({
+    replaceWith: '_'
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate);
@@ -50,6 +55,7 @@ const validateReview = (req, res, next) => {
     }
 }
 const sessionConfig = {
+    name:'session',
     secret: "thisisthebestsecret",
     resave: false,
     saveUninitialized: true,
@@ -61,6 +67,7 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig))
 app.use(flash());
+// app.use(helmet({contentSecurityPolicy:false}));
 
 
 app.use(passport.initialize());
