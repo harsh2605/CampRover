@@ -1,5 +1,8 @@
-require('dotenv').config();
+// require('dotenv').config();
 
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 
 const express = require('express');
 const app = express();
@@ -16,6 +19,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./Routes/users');
 const campgroundsRoutes = require('./Routes/campgrounds');
 const reviewsRoutes = require('./Routes/reviews');
+// const dbUrl = process.env.DB_URL;
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp')
     .then(() => {
@@ -25,6 +29,8 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp')
         console.log('connection unsuccesfull');
         console.log(err);
     });
+
+
 
 
 const Campground = require('./models/campground');

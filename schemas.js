@@ -20,7 +20,10 @@ const extension = (joi)=>({
         }
     }
 });
-const Joi=BaseJoi.extend(extension);
+const Joi=BaseJoi.extend(extension)
+
+
+
 module.exports.campgroundSchema = Joi.object({
     campground: Joi.object({
         title: Joi.string().required().escapeHTML(),
