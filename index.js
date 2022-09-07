@@ -19,9 +19,10 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./Routes/users');
 const campgroundsRoutes = require('./Routes/campgrounds');
 const reviewsRoutes = require('./Routes/reviews');
-// const dbUrl = process.env.DB_URL;
+const MongoDBStore = require("connect-mongo")(session);
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp')
+mongoose.connect(dbUrl)
     .then(() => {
         console.log('Connected to mongodatabase!!');
     })
@@ -60,9 +61,23 @@ const validateReview = (req, res, next) => {
         next();
     }
 }
+const secret = process.env.SECRET || 'thisshouldbeasecret';
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
+
 const sessionConfig = {
-    name:'session',
-    secret: "thisisthebestsecret",
+    store,
+    name: 'session',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
