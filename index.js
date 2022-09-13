@@ -20,8 +20,8 @@ const userRoutes = require('./Routes/users');
 const campgroundsRoutes = require('./Routes/campgrounds');
 const reviewsRoutes = require('./Routes/reviews');
 const MongoDBStore = require("connect-mongo")(session);
-//const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-const dbUrl = process.env.DB_URL || 'mongodb://0.0.0.0:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+// const dbUrl = process.env.DB_URL || 'mongodb://0.0.0.0:27017/yelp-camp';
 
 mongoose.connect(dbUrl)
     .then(() => {
@@ -33,7 +33,7 @@ mongoose.connect(dbUrl)
     });
 
 
-
+   // DB_URL=mongodb+srv://harshaga:rgW4BiMPKzMh2CeD@cluster0.an28btm.mongodb.net/?retryWrites=true&w=majority
 
 const Campground = require('./models/campground');
 const catchAsync = require('./utils/catchAsync');
@@ -62,7 +62,7 @@ const validateReview = (req, res, next) => {
         next();
     }
 }
-const secret = process.env.SECRET || 'thisshouldbeasecret';
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
 const store = new MongoDBStore({
     url: dbUrl,
     secret,
@@ -89,7 +89,6 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig))
 app.use(flash());
-// app.use(helmet({contentSecurityPolicy:false}));
 
 
 app.use(passport.initialize());
