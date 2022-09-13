@@ -32,8 +32,7 @@ mongoose.connect(dbUrl)
         console.log(err);
     });
 
-
-   // DB_URL=mongodb+srv://harshaga:rgW4BiMPKzMh2CeD@cluster0.an28btm.mongodb.net/?retryWrites=true&w=majority
+    
 
 const Campground = require('./models/campground');
 const catchAsync = require('./utils/catchAsync');
