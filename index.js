@@ -32,7 +32,7 @@ mongoose.connect(dbUrl)
         console.log(err);
     });
 
-    
+
 
 const Campground = require('./models/campground');
 const catchAsync = require('./utils/catchAsync');
@@ -122,3 +122,13 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Listening to port ${port}!!!`);
 })
+
+
+
+
+
+
+
+//Important packages:
+//1.ejs-mate: This package is used for short templeating like <% layout("layouts/boilerplate")%>
+//<%include("../layouts/boilerplate")%>
