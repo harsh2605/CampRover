@@ -1,11 +1,11 @@
 <% layout('layouts/boilerplate') %>
     <div class="row">
-        <h1 class="text-center">EDIT Campground</h1>
+        <h1 class="text-center" style="color: aqua;">EDIT Campground</h1>
         <div class="col-6 offset-3">
             <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" class="validate-form" novalidate
                 enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
+                    <label style="color:aqua" class="form-label" for="title">Title</label>
                     <input class="form-control" type="text" name="campground[title]" id="title"
                         value="<%= campground.title %>" required>
                     <div class="valid-feedback">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="location">Locations</label>
+                    <label style="color:aqua" class="form-label" for="location">Locations</label>
                     <input class="form-control" type="text" id="location" name="campground[location]"
                         value="<%= campground.location%>" required>
                     <div class="valid-feedback">
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="price">Campground Price</label>
+                    <label style="color:aqua" class="form-label" for="price">Campground Price</label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="price-label">$</span>
@@ -37,11 +37,11 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="formFileMultiple" class="form-label">Add More Images</label>
+                    <label style="color:aqua" for="formFileMultiple" class="form-label">Add More Images</label>
                     <input class="form-control" type="file" name="image" id="image" multiple>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
+                    <label style="color:aqua" class="form-label" for="description">Description</label>
                     <textarea class="form-control" type="text" id="image" name="campground[description]"
                         required><%= campground.description %>"</textarea>
                     <div class="valid-feedback">
@@ -54,13 +54,13 @@
                         <div class="form-check-inline">
                             <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%=img.filename%>">
                         </div>
-                        <label for="image-<%=i%>">Delete?</label>
+                        <label style="color:aqua" for="image-<%=i%>">Delete?</label>
                         <% }) %>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-info">Update Campground</button>
                 </div>
             </form>
-            <a href="/campgrounds">Back to All campgrounds</a>
+            <!-- <a href="/campgrounds">Back to All campgrounds</a> -->
         </div>
     </div>
